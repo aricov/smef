@@ -1,0 +1,31 @@
+@Value.Immutable
+@JsonDeserialize(builder=Immutable{{union}}.{{name}}.Builder.class)
+@JsonTypeName("{{union}}.{{name}}")
+interface {{name}} extends {{union}} {{#if traits}}, {{> traitNames}} {{/if}} {
+	{{> getters}}
+
+	interface Builder extends {{union}}.Builder{{#if traits}}, {{> traitBuilders}}{{/if}} {
+
+		{{> setters builder="Builder"}}
+
+		@Override
+		{{name}} build();
+
+	}
+
+	@Override
+	default void accept(VConsumer consumer) {
+		consumer.apply(this);
+	}
+
+	@Override
+	default <R> R accept(VFunction<R> func) {
+		return func.apply(this);
+	}
+
+	@Override
+	default <R, P> R accept(P param, VBiFunction<R,P> bifunc) {
+		return bifunc.apply(param, this);
+	}
+
+}

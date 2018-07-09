@@ -1,0 +1,65 @@
+package {{mapDomain domain}};
+
+import org.immutables.value.Value;
+import org.immutables.value.Value.Style.ImplementationVisibility;
+import org.immutables.value.Value.Style.BuilderVisibility;
+
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+@Value.Enclosing
+@Value.Style(
+	visibility = ImplementationVisibility.PACKAGE,
+	builderVisibility = BuilderVisibility.PACKAGE
+)
+@JsonTypeInfo(use=Id.NAME, include=As.PROPERTY)
+@JsonSubTypes({
+{{#members}}
+	@Type({{../name}}.{{name}}.class){{#unless @last}},{{/unless}}
+{{/members}}
+})
+
+public interface {{name}} {{#if traits}}extends {{> traitNames}}{{/if}} {
+
+	{{> getters}}
+
+	interface Builder {{#if traits}}extends {{> traitBuilders}}{{/if}} {
+		{{> setters builder="Builder"}}
+
+		{{name}} build();
+	}
+
+	void accept(VConsumer consumer);
+
+	<R> R accept(VFunction<R> func);
+
+	<R, P> R accept(P param, VBiFunction<R, P> bifunc);
+
+{{#members}}
+	{{> member union=../name}}
+
+{{/members}}
+
+	interface VConsumer {
+	{{#members}}
+		void apply({{name}} msg);
+	{{/members}}
+	}
+
+	interface VFunction<R> {
+	{{#members}}
+		R apply({{name}} msg);
+	{{/members}}
+	}
+
+	interface VBiFunction<R, P> {
+	{{#members}}
+		R apply(P param, {{name}} msg);
+	{{/members}}
+	}
+}

@@ -1,0 +1,36 @@
+#domain todo
+
+#union Command
+	#include common.Identified
+	#include common.Owned
+	
+	#message Add
+		text string
+		tags * string
+	
+	#message Edit
+		text string
+	
+	#message Cancel
+	
+	#message Complete
+/union
+
+#union Event
+	#include common.Identified
+	
+	version string
+	
+	#include common.Owned
+	
+	#message Added
+		text string
+	
+	#message Edited
+		text string
+		
+	#message Cancelled
+	
+	#message Completed
+/union
+

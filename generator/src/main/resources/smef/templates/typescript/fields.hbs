@@ -1,0 +1,3 @@
+{{#fields}}
+readonly {{name}}{{#eq qualifier.name 'OPTIONAL'}}?{{/eq}} : {{type}}{{#eq quantifier.name 'MANY'}}[]{{/eq}};
+{{/fields}}

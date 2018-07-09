@@ -1,0 +1,8 @@
+{{#fields}}
+{{#eq quantifier.name "MANY"}}
+{{builder}} {{name}}({{mapType type}}... values);
+{{builder}} add{{capitalizeFirst name}}({{mapType type}} value);
+{{^}}
+{{builder}} {{name}}({{mapType type}} value);
+{{/eq}}		
+{{/fields}}

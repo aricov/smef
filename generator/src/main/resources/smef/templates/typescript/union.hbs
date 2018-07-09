@@ -1,0 +1,19 @@
+export interface {{name}}Union {{#if traits}}extends {{> traitNames}}{{/if}} {
+	readonly $type: string;
+
+	{{> fields}}
+};
+
+{{#members}}
+export interface {{name}} extends {{../name}}Union {{#traits}}, {{name}}{{/traits}} {
+	readonly $type: '{{../name}}.{{name}}';
+
+	{{> fields}}
+};
+{{/members}}
+
+export type {{name}} =
+{{#members}}
+	{{#unless @first}}| {{/unless}} {{name}}
+{{/members}}
+	;

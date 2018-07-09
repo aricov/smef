@@ -1,0 +1,33 @@
+package {{mapDomain domain}};
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+import org.immutables.value.Value;
+import org.immutables.value.Value.Style.ImplementationVisibility;
+import org.immutables.value.Value.Style.BuilderVisibility;
+
+@Value.Immutable
+@Value.Style(
+	visibility = ImplementationVisibility.PACKAGE,
+	builderVisibility = BuilderVisibility.PACKAGE
+)
+@JsonDeserialize(builder = Immutable{{name}}.Builder.class)
+public interface {{name}} {{#if traits}}extends {{> traitNames}}{{/if}} {
+
+{{#fields}}
+	{{mapType type}} {{name}}();
+{{/fields}}
+
+
+	static Builder builder() {
+		return Immutable{{name}}.builder();
+	}
+
+	interface Builder {{#if traits}} extends {{> traitBuiders}}{{/if}} {
+
+		{{>setters builder="Builder"}}
+
+		{{name}} build();
+	}
+
+}

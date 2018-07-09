@@ -1,0 +1,16 @@
+#domain examples
+
+#message Greeting 
+	text string
+	
+#union Action
+	user string
+	
+	#message Walk
+		distance integer
+	
+	#message Jump
+	
+	#message Turn
+		dir Direction
+/union
