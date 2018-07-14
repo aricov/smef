@@ -4,8 +4,6 @@ public interface {{name}} {
 	
 	{{> getters}}
 		
-	static Builder builder();
-	
 	public interface Builder<B extends Builder<B>> {		
 	{{> setters builder="B"}}
 	}

@@ -12,7 +12,7 @@ import smef.generator.SmefDialect;
 import smef.generator.SmefMessageWriter;
 import smef.generator.SmefMessageWriterFactory;
 import smef.generator.handlerbars.HandlebarsMessageWriterFactory;
-import smef.generator.handlerbars.SmefJavaDialect;
+import smef.generator.java.SmefJavaDialect;
 import smef.parser.SmefBackend;
 
 public class ParsingExample {

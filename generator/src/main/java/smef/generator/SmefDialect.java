@@ -11,7 +11,7 @@ public interface SmefDialect {
 	
 	Map<String, String> getDomainMappings();
 	
-	Map<String, String> getTypeMappings();
+	TypeMapper getTypeMapper();
 
 	Path getOutputPath(SmefUnit smefUnit);
 	

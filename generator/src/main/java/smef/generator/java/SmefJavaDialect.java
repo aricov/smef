@@ -1,28 +1,23 @@
-package smef.generator.handlerbars;
+package smef.generator.java;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 import smef.ast.SmefUnit;
 import smef.generator.SmefDialect;
+import smef.generator.TypeMapper;
 
 public class SmefJavaDialect implements SmefDialect {
 
-	private static final Map<String, String> stdTypeMappings = new HashMap<>();
-	
 	private final Map<String, String> domainToPackage;
 
+	private final TypeMapper typeMapper;
+	
 	public SmefJavaDialect(Map<String, String> domainToPackage) {
 		this.domainToPackage = domainToPackage;
-		stdTypeMappings.put("boolean", "boolean");
-		stdTypeMappings.put("integer", "int");
-		stdTypeMappings.put("decimal", "float");
-		stdTypeMappings.put("string", "String");
-		stdTypeMappings.put("uuid", UUID.class.getName());
+		this.typeMapper = JavaTypeMapper.withDomainMappings(domainToPackage);
 	}
 
 	@Override
@@ -36,8 +31,8 @@ public class SmefJavaDialect implements SmefDialect {
 	}
 	
 	@Override
-	public Map<String, String> getTypeMappings() {
-		return stdTypeMappings;
+	public TypeMapper getTypeMapper() {
+		return typeMapper;
 	}
 	
 	@Override

@@ -35,7 +35,7 @@ import smef.ast.SmefFile;
 import smef.ast.SmefUnit;
 import smef.generator.SmefDialect;
 import smef.generator.handlerbars.HandlebarsGenerator;
-import smef.generator.handlerbars.SmefJavaDialect;
+import smef.generator.java.SmefJavaDialect;
 import smef.parser.SmefBackend;
 
 @Mojo(

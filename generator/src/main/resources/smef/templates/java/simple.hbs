@@ -15,7 +15,7 @@ import org.immutables.value.Value.Style.BuilderVisibility;
 public interface {{name}} {{#if traits}}extends {{> traitNames}}{{/if}} {
 
 {{#fields}}
-	{{mapType type}} {{name}}();
+	{{mapType typeSpec}} {{name}}();
 {{/fields}}
 
 

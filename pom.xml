@@ -8,8 +8,6 @@
 	<version>0.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<name>S.Me.F</name>
-	<description>simple Message format</description>
 
 	<properties>
 		<project.build.sourceEncoding>utf8</project.build.sourceEncoding>
@@ -28,6 +26,8 @@
 		<module>examples</module>
 	</modules>
 
+	<name>S.Me.F</name>
+	<description>simple Message format</description>
 	<url>https://github.com/aricov/smef</url>
 
 	<developers>

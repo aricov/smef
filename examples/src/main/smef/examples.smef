@@ -3,7 +3,14 @@
 #message Greeting 
 	text string
 	
+#trait Identified
+	id integer
+
+	
 #union Action
+
+	#include Identified
+	
 	user string
 	
 	#message Walk

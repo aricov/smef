@@ -4,7 +4,11 @@
 interface {{name}} extends {{union}} {{#if traits}}, {{> traitNames}} {{/if}} {
 	{{> getters}}
 
-	interface Builder extends {{union}}.Builder{{#if traits}}, {{> traitBuilders}}{{/if}} {
+	static Builder builder() {
+		return Immutable{{union}}.{{name}}.builder();
+	}
+	
+	interface Builder extends {{union}}.Builder<Builder>{{#if traits}}, {{> traitBuilders}}{{/if}} {
 
 		{{> setters builder="Builder"}}
 

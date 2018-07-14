@@ -46,7 +46,7 @@ public class HandlebarsMessageWriterFactory implements SmefMessageWriterFactory 
 		};
 		
 		DomainMappingHelper.register(handlebars, dialect.getDomainMappings());
-		TypeMappingHelper.register(handlebars, dialect.getDomainMappings(), dialect.getTypeMappings());
+		TypeMappingHelper.register(handlebars, dialect.getTypeMapper());
 		
 		handlebars.prettyPrint(true);
 		

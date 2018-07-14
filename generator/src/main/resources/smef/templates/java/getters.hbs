@@ -1,7 +1,7 @@
 {{#fields}}
 {{#eq quantifier.name "MANY"}}
-java.util.List<{{mapType type}}> {{name}}();
+java.util.List<{{mapType typeSpec}}> {{name}}();
 {{^}}
-{{mapType type}} {{name}}();
+{{mapType typeSpec}} {{name}}();
 {{/eq}}
 {{/fields}}
