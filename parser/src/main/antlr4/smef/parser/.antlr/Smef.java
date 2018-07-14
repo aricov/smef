@@ -1,4 +1,4 @@
-// Generated from c:\src\smef\parser\src\main\antlr4\smef\parser\SmefParser.g4 by ANTLR 4.7.1
+// Generated from c:\src\smef\parser\src\main\antlr4\smef\parser\Smef.g4 by ANTLR 4.7.1
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class SmefParser extends Parser {
+public class Smef extends Parser {
 	static { RuntimeMetaData.checkVersion("4.7.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -71,7 +71,7 @@ public class SmefParser extends Parser {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "SmefParser.g4"; }
+	public String getGrammarFileName() { return "Smef.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -82,7 +82,7 @@ public class SmefParser extends Parser {
 	@Override
 	public ATN getATN() { return _ATN; }
 
-	public SmefParser(TokenStream input) {
+	public Smef(TokenStream input) {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
@@ -141,8 +141,8 @@ public class SmefParser extends Parser {
 
 	public static class DomainDeclContext extends ParserRuleContext {
 		public Token name;
-		public TerminalNode DOMAIN() { return getToken(SmefParser.DOMAIN, 0); }
-		public TerminalNode SNAME() { return getToken(SmefParser.SNAME, 0); }
+		public TerminalNode DOMAIN() { return getToken(Smef.DOMAIN, 0); }
+		public TerminalNode SNAME() { return getToken(Smef.SNAME, 0); }
 		public DomainDeclContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -230,8 +230,8 @@ public class SmefParser extends Parser {
 	}
 
 	public static class TraitDefContext extends ParserRuleContext {
-		public TerminalNode TRAIT() { return getToken(SmefParser.TRAIT, 0); }
-		public TerminalNode MessageName() { return getToken(SmefParser.MessageName, 0); }
+		public TerminalNode TRAIT() { return getToken(Smef.TRAIT, 0); }
+		public TerminalNode MessageName() { return getToken(Smef.MessageName, 0); }
 		public List<CommentLineContext> commentLine() {
 			return getRuleContexts(CommentLineContext.class);
 		}
@@ -306,8 +306,8 @@ public class SmefParser extends Parser {
 	}
 
 	public static class SimpleDefContext extends ParserRuleContext {
-		public TerminalNode MESSAGE() { return getToken(SmefParser.MESSAGE, 0); }
-		public TerminalNode MessageName() { return getToken(SmefParser.MessageName, 0); }
+		public TerminalNode MESSAGE() { return getToken(Smef.MESSAGE, 0); }
+		public TerminalNode MessageName() { return getToken(Smef.MessageName, 0); }
 		public List<CommentLineContext> commentLine() {
 			return getRuleContexts(CommentLineContext.class);
 		}
@@ -382,9 +382,9 @@ public class SmefParser extends Parser {
 	}
 
 	public static class UnionDefContext extends ParserRuleContext {
-		public TerminalNode UNION_BEGIN() { return getToken(SmefParser.UNION_BEGIN, 0); }
-		public TerminalNode MessageName() { return getToken(SmefParser.MessageName, 0); }
-		public TerminalNode UNION_END() { return getToken(SmefParser.UNION_END, 0); }
+		public TerminalNode UNION_BEGIN() { return getToken(Smef.UNION_BEGIN, 0); }
+		public TerminalNode MessageName() { return getToken(Smef.MessageName, 0); }
+		public TerminalNode UNION_END() { return getToken(Smef.UNION_END, 0); }
 		public List<CommentLineContext> commentLine() {
 			return getRuleContexts(CommentLineContext.class);
 		}
@@ -531,7 +531,7 @@ public class SmefParser extends Parser {
 	}
 
 	public static class FieldDefContext extends ParserRuleContext {
-		public TerminalNode SNAME() { return getToken(SmefParser.SNAME, 0); }
+		public TerminalNode SNAME() { return getToken(Smef.SNAME, 0); }
 		public TypeRefContext typeRef() {
 			return getRuleContext(TypeRefContext.class,0);
 		}
@@ -541,7 +541,7 @@ public class SmefParser extends Parser {
 		public CommentLineContext commentLine(int i) {
 			return getRuleContext(CommentLineContext.class,i);
 		}
-		public TerminalNode QUANTIFIER() { return getToken(SmefParser.QUANTIFIER, 0); }
+		public TerminalNode QUANTIFIER() { return getToken(Smef.QUANTIFIER, 0); }
 		public FieldDefContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -597,9 +597,9 @@ public class SmefParser extends Parser {
 	}
 
 	public static class TypeRefContext extends ParserRuleContext {
-		public TerminalNode SNAME() { return getToken(SmefParser.SNAME, 0); }
-		public TerminalNode MessageName() { return getToken(SmefParser.MessageName, 0); }
-		public TerminalNode QNAME() { return getToken(SmefParser.QNAME, 0); }
+		public TerminalNode SNAME() { return getToken(Smef.SNAME, 0); }
+		public TerminalNode MessageName() { return getToken(Smef.MessageName, 0); }
+		public TerminalNode QNAME() { return getToken(Smef.QNAME, 0); }
 		public TypeRefContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -637,7 +637,7 @@ public class SmefParser extends Parser {
 	}
 
 	public static class IncludeContext extends ParserRuleContext {
-		public TerminalNode INCLUDE() { return getToken(SmefParser.INCLUDE, 0); }
+		public TerminalNode INCLUDE() { return getToken(Smef.INCLUDE, 0); }
 		public TypeRefContext typeRef() {
 			return getRuleContext(TypeRefContext.class,0);
 		}
@@ -671,9 +671,9 @@ public class SmefParser extends Parser {
 	}
 
 	public static class CommentLineContext extends ParserRuleContext {
-		public TerminalNode COMMENT_START() { return getToken(SmefParser.COMMENT_START, 0); }
-		public TerminalNode COMMENT_END() { return getToken(SmefParser.COMMENT_END, 0); }
-		public TerminalNode COMMENT_TEXT() { return getToken(SmefParser.COMMENT_TEXT, 0); }
+		public TerminalNode COMMENT_START() { return getToken(Smef.COMMENT_START, 0); }
+		public TerminalNode COMMENT_END() { return getToken(Smef.COMMENT_END, 0); }
+		public TerminalNode COMMENT_TEXT() { return getToken(Smef.COMMENT_TEXT, 0); }
 		public CommentLineContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}

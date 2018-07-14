@@ -52,7 +52,7 @@ public class PluginExample {
 			
 			@Override
 			public void apply(Walk msg) {
-				System.out.printf("[%d] walks %d paces \n", msg.id(), msg.user(), msg.distance());
+				System.out.printf("[%d] %s walks %d paces \n", msg.id(), msg.user(), msg.distance());
 			}
 		});
 	}

@@ -5,6 +5,8 @@ import static java.util.stream.Collectors.toList;
 import java.util.List;
 import java.util.Objects;
 
+import org.antlr.v4.runtime.tree.TerminalNode;
+
 import smef.ast.FieldDef;
 import smef.ast.MessageDef;
 import smef.ast.Quantifier;
@@ -14,6 +16,7 @@ import smef.ast.SmefFile;
 import smef.ast.TraitDef;
 import smef.ast.TypeRef;
 import smef.ast.UnionMessageDef;
+import smef.parser.SmefParser.CommentLineContext;
 import smef.parser.SmefParser.DefContext;
 import smef.parser.SmefParser.DomainDeclContext;
 import smef.parser.SmefParser.FieldDefContext;
@@ -24,7 +27,7 @@ import smef.parser.SmefParser.SmefFileContext;
 import smef.parser.SmefParser.TraitDefContext;
 import smef.parser.SmefParser.UnionDefContext;
 
-public class SmefInterpreter extends SmefBaseVisitor<Object> {
+public class SmefInterpreter extends SmefParserBaseVisitor<Object> {
 	
 	@Override
 	public SmefFile visitSmefFile(SmefFileContext ctx) {
@@ -48,13 +51,14 @@ public class SmefInterpreter extends SmefBaseVisitor<Object> {
 		}
 		return null;
 	}
-			
+	
 	@Override
 	public TraitDef visitTraitDef(TraitDefContext ctx) {
 		String name = ctx.MessageName().getText();
+		List<String> comments = readCommentList(ctx.commentLine() );
 		List<TypeRef> traits = visitTraitRefs(ctx.messageContent());
 		List<FieldDef> fields = visitFieldDefs(ctx.messageContent());
-		return new TraitDef(name, traits, fields);
+		return new TraitDef(name, comments, traits, fields);
 	}
 	
 	private List<TypeRef> visitTraitRefs(List<MessageContentContext> ctx) {
@@ -76,21 +80,24 @@ public class SmefInterpreter extends SmefBaseVisitor<Object> {
 	@Override
 	public SimpleMessageDef visitSimpleDef(SimpleDefContext ctx) {
 		String name = ctx.MessageName().getText();
+		List<String> comments = readCommentList(ctx.commentLine() );
 		List<TypeRef> traits = visitTraitRefs(ctx.messageContent());
 		List<FieldDef> fields = visitFieldDefs(ctx.messageContent());
-		return new SimpleMessageDef(name, traits, fields);
+		return new SimpleMessageDef(name, comments, traits, fields);
 	}
 	
 	
 	@Override
 	public UnionMessageDef visitUnionDef(UnionDefContext ctx) {
 		String name = ctx.MessageName().getText();
+		List<String> comments = readCommentList(ctx.commentLine() );
+		
 		List<TypeRef> traits = visitTraitRefs(ctx.messageContent());
 		List<FieldDef> fields = visitFieldDefs(ctx.messageContent());
 		List<SimpleMessageDef> members = ctx.simpleDef().stream()
 			.map(this::visitSimpleDef)
 			.collect(toList());
-		return new UnionMessageDef(name, traits, fields, members);
+		return new UnionMessageDef(name, comments, traits, fields, members);
 	}
 	
 	@Override
@@ -104,12 +111,23 @@ public class SmefInterpreter extends SmefBaseVisitor<Object> {
 		String name = ctx.SNAME().getText();
 		String type = ctx.typeRef().getText();
 		String qunt = ctx.QUANTIFIER() != null ? ctx.QUANTIFIER().getText() : "";
-		return new FieldDef(name, Quantifier.forSymbol(qunt), Smef.parseRef(type));
+		List<String> comments = readCommentList(ctx.commentLine());
+		return new FieldDef(name, Quantifier.forSymbol(qunt), Smef.parseRef(type), comments);
 	}
 	
 	@Override
 	public String visitDomainDecl(DomainDeclContext ctx) {
 		return ctx.SNAME().getText();
+	}
+
+	private List<String> readCommentList(List<CommentLineContext> commentLines) {
+		return commentLines.stream()
+			.map(CommentLineContext::COMMENT_TEXT)
+			.filter(Objects::nonNull)
+			.map(TerminalNode::getText)
+			.map(String::trim)
+			.collect(toList())
+			;
 	}
 
 }

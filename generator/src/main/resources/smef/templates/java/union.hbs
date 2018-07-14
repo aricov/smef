@@ -17,6 +17,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+/**
+{{> javadoc}}
+ */
 @Value.Enclosing
 @Value.Style(
 	visibility = ImplementationVisibility.PACKAGE,
@@ -28,7 +31,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 	@Type({{../name}}.{{name}}.class){{#unless @last}},{{/unless}}
 {{/members}}
 })
-
 public interface {{name}} {{#if traits}}extends {{> traitNames}}{{/if}} {
 
 	{{> getters}}

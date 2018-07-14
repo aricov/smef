@@ -4,20 +4,28 @@
 	text string
 	
 #trait Identified
+	## The numeric identifier of the message
 	id integer
 
-	
+## Message representing user character actions
+## @author AricoV
 #union Action
 
 	#include Identified
 	
+	## The name of the user character
 	user string
 	
+	## Walk action
 	#message Walk
+		## The number of paces to walk
 		distance integer
 	
+	## Jump action 
 	#message Jump
 	
+	## Turn action
 	#message Turn
+		## The direction to turn. Affect the next {@link Walk}
 		dir Direction
 /union

@@ -4,8 +4,8 @@ import java.util.List;
 
 public class TraitDef extends MessageDef {
 
-	public TraitDef(String name, List<TypeRef> traits, List<FieldDef> fields) {
-		super(name, traits, fields);
+	public TraitDef(String name, List<String> comments, List<TypeRef> traits, List<FieldDef> fields) {
+		super(name, comments, traits, fields);
 	}
 	
 	@Override

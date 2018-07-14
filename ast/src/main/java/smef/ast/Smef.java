@@ -6,8 +6,11 @@ import static smef.ast.Quantifier.ONE;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class Smef {
+
+	public static final List<String> NO_COMMENT = Collections.emptyList();
 
 	private Smef() {
 	}
@@ -17,11 +20,11 @@ public class Smef {
 	}
 
 	public static SimpleMessageDef simple(String name, TraitRefs traits, FieldDef... fields) {
-		return new SimpleMessageDef(name, traits, Arrays.asList(fields));
+		return new SimpleMessageDef(name, NO_COMMENT, traits, Arrays.asList(fields));
 	}
 
 	public static SimpleMessageDef simple(String name, FieldDef... fields) {
-		return new SimpleMessageDef(name, TraitRefs.EMPTY, Arrays.asList(fields));
+		return new SimpleMessageDef(name, NO_COMMENT, TraitRefs.EMPTY, Arrays.asList(fields));
 	}
 
 	public static FieldDef field(String name, String type) {
@@ -52,7 +55,7 @@ public class Smef {
 	}
 	
 	public static TraitDef trait(String name, TraitRefs traits, FieldDef... fields) {
-		return new TraitDef(name, traits, Arrays.asList(fields));
+		return new TraitDef(name, NO_COMMENT, traits, Arrays.asList(fields));
 	}
 
 	public static TraitDef trait(String name, FieldDef... fields) {
@@ -60,7 +63,7 @@ public class Smef {
 	}
 	
 	public static UnionMessageDef union(String name, TraitRefs traits, FieldDefs commonFields, SimpleMessageDef... members) {
-		return new UnionMessageDef(name, traits, commonFields, Arrays.asList(members));
+		return new UnionMessageDef(name, NO_COMMENT, traits, commonFields, Arrays.asList(members));
 	}
 	
 	public static UnionMessageDef union(String name, TraitRefs commonTraits, SimpleMessageDef... members) {
@@ -76,13 +79,12 @@ public class Smef {
 	}
 	
 	public static SimpleMessageDef member(String name, TraitRefs traits, FieldDef... fields) {
-		return new SimpleMessageDef(name, traits, Arrays.asList(fields));
+		return new SimpleMessageDef(name, NO_COMMENT, traits, Arrays.asList(fields));
 	}
 
 	public static SimpleMessageDef member(String name, FieldDef... fields) {
-		return new SimpleMessageDef(name, Collections.emptyList(), Arrays.asList(fields));
+		return new SimpleMessageDef(name, NO_COMMENT, Collections.emptyList(), Arrays.asList(fields));
 	}
-
 	
 	public static TraitRefs is(TypeRef...traits) {
 		return new TraitRefs(traits);

@@ -4,8 +4,8 @@ import java.util.List;
 
 public class SimpleMessageDef extends MessageDef {
 
-	public SimpleMessageDef(String name, List<TypeRef> traits, List<FieldDef> fields) {
-		super(name, traits, fields);
+	public SimpleMessageDef(String name, List<String> comment, List<TypeRef> traits, List<FieldDef> fields) {
+		super(name, comment, traits, fields);
 	}
 	
 	@Override
