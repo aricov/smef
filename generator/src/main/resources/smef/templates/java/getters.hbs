@@ -1,4 +1,7 @@
 {{#fields}}
+/**
+{{> javadoc}}
+*/
 {{#eq quantifier.name "MANY"}}
 java.util.List<{{mapType typeSpec}}> {{name}}();
 {{^}}

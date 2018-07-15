@@ -1,6 +1,7 @@
 package smef.ast;
 
 import static java.util.Collections.unmodifiableList;
+import static smef.ast.Smef.NO_COMMENT;
 
 import java.util.List;
 import java.util.function.BiConsumer;
@@ -11,12 +12,19 @@ public abstract class MessageDef extends FieldListDef {
 
 	public final String name;
 	public final List<TypeRef> traits;
+	public final List<String> comments;
 
 	protected MessageDef(String name, List<TypeRef> traits, List<FieldDef> fields) {
+		this(name, NO_COMMENT, traits, fields);
+	}
+	
+	protected MessageDef(String name, List<String> comments, List<TypeRef> traits, List<FieldDef> fields) {
 		super(fields);
 		this.name = name;
 		this.traits = unmodifiableList(traits);
+		this.comments = comments!=null ? comments : NO_COMMENT;
 	}
+	
 	
 	abstract protected void accept(VConsumer consumer) throws Exception;
 	

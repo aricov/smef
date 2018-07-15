@@ -8,8 +8,8 @@ public class UnionMessageDef extends MessageDef {
 
 	public final List<SimpleMessageDef> members;
 
-	public UnionMessageDef(String name, List<TypeRef> traits, List<FieldDef> fields, List<SimpleMessageDef> cases) {
-		super(name, traits, fields);
+	public UnionMessageDef(String name, List<String> comments, List<TypeRef> traits, List<FieldDef> fields, List<SimpleMessageDef> cases) {
+		super(name, comments, traits, fields);
 		this.members = unmodifiableList(cases);
 	}
 
