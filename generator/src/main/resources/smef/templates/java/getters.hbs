@@ -3,7 +3,7 @@
 {{> javadoc}}
 */
 {{#eq quantifier.name "MANY"}}
-java.util.List<{{mapType typeSpec}}> {{name}}();
+List<{{mapType typeSpec}}> {{name}}();
 {{^}}
 {{mapType typeSpec}} {{name}}();
 {{/eq}}

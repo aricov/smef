@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 public abstract class MessageDef extends FieldListDef {
 
@@ -25,6 +26,10 @@ public abstract class MessageDef extends FieldListDef {
 		this.comments = comments!=null ? comments : NO_COMMENT;
 	}
 	
+	@Override
+	Stream<TypeRef> refStream() {
+		return Stream.concat(traits.stream(), super.refStream());
+	}
 	
 	abstract protected void accept(VConsumer consumer) throws Exception;
 	

@@ -1,0 +1,24 @@
+{{#hasMany}}
+import java.util.List;
+{{/hasMany}}
+{{#hasUuid}}
+import java.util.UUID;
+{{/hasUuid}}
+{{#hasDate}}
+import java.time.LocalDate;
+{{/hasDate}}
+{{#hasDateTime}}
+import java.time.OffsetDateTime;
+{{/hasDateTime}}
+{{#hasTime}}
+import java.time.OffsetTime;
+{{/hasTime}}
+{{#hasUri}}
+import java.net.Uri;
+{{/hasUri}}
+
+{{#refs}}
+{{#if domain}}
+import {{mapDomain domain}}.{{name}};
+{{/if}}
+{{/refs}}
