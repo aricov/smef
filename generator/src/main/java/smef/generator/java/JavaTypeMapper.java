@@ -2,6 +2,9 @@ package smef.generator.java;
 
 import static smef.ast.Quantifier.MANY;
 
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.time.OffsetTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -19,12 +22,18 @@ public class JavaTypeMapper implements TypeMapper {
 		singleTypeMappings.put("integer", "int");
 		singleTypeMappings.put("decimal", "float");
 		singleTypeMappings.put("string", "String");
+		singleTypeMappings.put("date", LocalDate.class.getName());
+		singleTypeMappings.put("datetime", OffsetDateTime.class.getName());
+		singleTypeMappings.put("time", OffsetTime.class.getName());
 		singleTypeMappings.put("uuid", UUID.class.getName());
 		
 		multiTypeMappings.put("boolean", Boolean.class.getSimpleName());
 		multiTypeMappings.put("integer", Integer.class.getSimpleName());
 		multiTypeMappings.put("decimal", Float.class.getSimpleName());
 		multiTypeMappings.put("string", String.class.getSimpleName());
+		singleTypeMappings.put("date", LocalDate.class.getName());
+		singleTypeMappings.put("datetime", OffsetDateTime.class.getName());
+		singleTypeMappings.put("time", OffsetTime.class.getName());
 		multiTypeMappings.put("uuid", UUID.class.getName());
 	}
 	private final Map<String, String> domainMappings;

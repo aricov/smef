@@ -7,11 +7,16 @@
 	## The numeric identifier of the message
 	id integer
 
+#trait Timed
+	## The exact date time 
+	dt datetime
+
 ## Message representing user character actions
 ## @author AricoV
 #union Action
 
 	#include Identified
+	#include Timed
 	
 	## The name of the user character
 	user string
