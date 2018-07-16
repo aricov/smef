@@ -2,6 +2,7 @@ package smef.generator.java;
 
 import static smef.ast.Quantifier.MANY;
 
+import java.net.URI;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.OffsetTime;
@@ -22,30 +23,27 @@ public class JavaTypeMapper implements TypeMapper {
 		singleTypeMappings.put("integer", "int");
 		singleTypeMappings.put("decimal", "float");
 		singleTypeMappings.put("string", "String");
-		singleTypeMappings.put("date", LocalDate.class.getName());
-		singleTypeMappings.put("datetime", OffsetDateTime.class.getName());
-		singleTypeMappings.put("time", OffsetTime.class.getName());
-		singleTypeMappings.put("uuid", UUID.class.getName());
+		singleTypeMappings.put("date", LocalDate.class.getSimpleName());
+		singleTypeMappings.put("datetime", OffsetDateTime.class.getSimpleName());
+		singleTypeMappings.put("time", OffsetTime.class.getSimpleName());
+		singleTypeMappings.put("uuid", UUID.class.getSimpleName());
+		singleTypeMappings.put("uri", URI.class.getSimpleName());
 		
 		multiTypeMappings.put("boolean", Boolean.class.getSimpleName());
 		multiTypeMappings.put("integer", Integer.class.getSimpleName());
 		multiTypeMappings.put("decimal", Float.class.getSimpleName());
 		multiTypeMappings.put("string", String.class.getSimpleName());
-		singleTypeMappings.put("date", LocalDate.class.getName());
-		singleTypeMappings.put("datetime", OffsetDateTime.class.getName());
-		singleTypeMappings.put("time", OffsetTime.class.getName());
-		multiTypeMappings.put("uuid", UUID.class.getName());
+		multiTypeMappings.put("date", LocalDate.class.getSimpleName());
+		multiTypeMappings.put("datetime", OffsetDateTime.class.getSimpleName());
+		multiTypeMappings.put("time", OffsetTime.class.getSimpleName());
+		multiTypeMappings.put("uuid", UUID.class.getSimpleName());
+		multiTypeMappings.put("uri", URI.class.getSimpleName());
 	}
-	private final Map<String, String> domainMappings;
 	
-	
-	private JavaTypeMapper(Map<String, String> domainMappings) {
-		this.domainMappings = domainMappings;
+	private JavaTypeMapper() {
 	}
 
-	public static JavaTypeMapper withDomainMappings(Map<String, String> domainMappings) {
-		return new JavaTypeMapper(domainMappings);
-	}
+	public static JavaTypeMapper INSTANCE = new JavaTypeMapper();
 	
 	@Override
 	public Optional<String> map(TypeSpec spec) {
@@ -56,7 +54,7 @@ public class JavaTypeMapper implements TypeMapper {
 		return Optional.ofNullable(
 			spec.domain == null || spec.domain.isEmpty()
 				? mapUnqualifiedType(spec)
-				: mapDomainType(spec)
+				: spec.name
 		);
 	}
 	
@@ -67,10 +65,4 @@ public class JavaTypeMapper implements TypeMapper {
 		
 		return singleTypeMappings.get(spec.name);
 	}
-	
-	public String mapDomainType(TypeSpec spec) {
-		String pkg = Optional.ofNullable(domainMappings.get(spec.domain)).orElse(spec.domain);
-		return pkg + "." + spec.name;		
-	}
-
 }

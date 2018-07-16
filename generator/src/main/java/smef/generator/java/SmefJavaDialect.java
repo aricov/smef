@@ -17,7 +17,7 @@ public class SmefJavaDialect implements SmefDialect {
 	
 	public SmefJavaDialect(Map<String, String> domainToPackage) {
 		this.domainToPackage = domainToPackage;
-		this.typeMapper = JavaTypeMapper.withDomainMappings(domainToPackage);
+		this.typeMapper = JavaTypeMapper.INSTANCE;
 	}
 
 	@Override

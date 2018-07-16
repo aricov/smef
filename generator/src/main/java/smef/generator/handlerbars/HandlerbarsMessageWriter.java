@@ -7,6 +7,7 @@ import com.github.jknack.handlebars.Context;
 import com.github.jknack.handlebars.Template;
 import com.github.jknack.handlebars.context.FieldValueResolver;
 import com.github.jknack.handlebars.context.MapValueResolver;
+import com.github.jknack.handlebars.context.MethodValueResolver;
 
 import smef.ast.MessageDef;
 import smef.ast.SimpleMessageDef;
@@ -62,7 +63,8 @@ public class HandlerbarsMessageWriter implements SmefMessageWriter {
 				.combine("domain", domain)
 				.resolver(
 						FieldValueResolver.INSTANCE,
-						MapValueResolver.INSTANCE
+						MapValueResolver.INSTANCE,
+						MethodValueResolver.INSTANCE
 						)
 				.build();	
 	}

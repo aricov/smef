@@ -28,4 +28,8 @@ public class TypeRef {
 	public int hashCode() {
 		return domain.hashCode() * 13 + name.hashCode();
 	}
+	
+	public String toString() {
+		return String.format("%s.%s", domain, name);
+	}
 }
